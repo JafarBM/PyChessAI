@@ -1,0 +1,116 @@
+<html>
+
+<head>
+<style>
+    body {
+        {% load static %}
+        background-image: url("{% static "IMGs/Background3.png" %}");
+        background-size: 100%;
+    }
+
+    h2 {
+        display: inline-block;
+        color: darkkhaki;
+        margin-top: 50px;
+        margin-left: 510px;
+    }
+
+    p {
+        display: inline-block;
+        font-weight: bold;
+        color: darkkhaki;
+        margin-left: 400px;
+    }
+
+    #username{
+        position: absolute;
+        left: 565px;
+        margin-top: 10px;
+    }
+
+    #email{
+        position: absolute;
+        left: 565px;
+        margin-top: 10px;
+    }
+
+    #password1{
+        position: absolute;
+        left: 565px;
+        margin-top: 10px;
+    }
+
+    #password2{
+        margin-left: 3px;
+    }
+
+    #button1{
+        display: inline-block;
+        position: absolute;
+        left: 530px;
+        width: 80px;
+        height: 30px;
+        background-color: saddlebrown;
+        color: darkkhaki;
+    }
+
+    #clear-btn{
+        position: absolute;
+        left: 630px;
+        width: 80px;
+        height: 30px;
+        background-color: saddlebrown;
+        color: darkkhaki;
+
+    }
+
+    h3{
+        position: absolute;
+        left:365px;
+        top: 350px;
+        color: red;
+        font-size: x-large;
+    }
+
+    #home-btn{
+        position: absolute;
+        left: 560px;
+        top: 550px;
+        background-color: darkkhaki;
+        width: 130px;
+        height: 50px;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Enter Your Info.</h2>
+<form action="{% url 'info_signup' %}" method="post">
+{% csrf_token %}
+
+	<p>Username :</p> <input type="text" name="username" required autocomplete="off" id="username" placeholder="Username"></br>
+
+
+	<p>Email :</p> <input type="email" name="email" required autocomplete="off" placeholder="Email" id="email"></br>
+
+
+	<p>Password :</p> <input type="password" name="password" required autocomplete="off" placeholder="Password" id="password1"></br>
+    {#  <p>Repeat Password :</p> <input type="password" name="password2" required autocomplete="off" placeholder="Repeat Password" id="password2"></br>#}
+	</br>
+
+	<input type="submit" value="Sign up" id="button1" id="sigun-btn">
+	<input type="reset" value="Clear" id="clear-btn"></br>
+
+    <a href="{% url 'home' %}"><button type="button" id="home-btn">Return To Home</button> </a>
+
+</form></br>
+
+{% if error %}<h3>{{ error }}</h3>{% endif %}
+
+</body>
+
+
+</html>

@@ -1,0 +1,66 @@
+<html>
+
+<head>
+
+<style>
+    {% load static %}
+    body {
+        display: table;
+        background-image: url(" {% static "IMGs/Background1.jpg" %}");
+        background-size: 100%;
+    }
+
+    h3{
+        margin: auto;
+        color: darkkhaki;
+    }
+
+    #exit{
+        color: burlywood;
+        position: absolute;
+        top: 600px;
+        background-color: black;
+    }
+
+    #board{
+        position: absolute;
+        left: 350px;
+    }
+
+{#    #black-rook-right{#}
+{#        position: absolute;#}
+{#        left: 860px;#}
+{#        top: 60px;#}
+{#        width: 70px;#}
+{#        height: 70px;#}
+{#    }#}
+
+</style>
+
+</head>
+
+<body>
+
+
+<h3>HI {{user.username}} !</h3>
+<img src="{% static "IMGs/board.png" %}" width="610" height="610", id="board">
+{#<img src="{% static "IMGs/wb.png" %}">#}
+{#<img src="{% static "IMGs/wk.png" %}">#}
+{#<img src="{% static "IMGs/wn.png" %}">#}
+{#<img src="{% static "IMGs/wp.png" %}">#}
+{#<img src="{% static "IMGs/wq.png" %}">#}
+{#<img src="{% static "IMGs/wr.png" %}">#}
+{##}
+{#<img src="{% static "IMGs/bb.png" %}">#}
+{#<img src="{% static "IMGs/bk.png" %}">#}
+{#<img src="{% static "IMGs/bn.png" %}">#}
+{#<img src="{% static "IMGs/bp.png" %}">#}
+{#<img src="{% static "IMGs/bq.png" %}">#}
+{#<img src="{% static "IMGs/br.png" %}" id="black-rook-right">#}
+
+
+<a href="{% url 'home' %}"><button type="button" id="exit">Sign Out!</button></a>
+
+</body>
+
+</html>

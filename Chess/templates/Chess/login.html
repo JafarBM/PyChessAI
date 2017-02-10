@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+<style>
+    {% load static %}
+    body {
+        background-image: url("{% static "IMGs/Background2.png" %}");
+        background-size: 100%;
+    }
+
+    h2 {
+        display: inline-block;
+        color: chocolate;
+        margin-top: 150px;
+    }
+    p {
+        display: inline-block;
+        color: gold;
+        margin: auto auto;
+        font-size: large;
+        font-weight: 600;
+    }
+    #usernameinput {
+        position: absolute;
+        left: 140px;
+    }
+    #passwordinput {
+        position: absolute;
+        left: 140px;
+    }
+
+    a {
+        display: inherit;
+
+        color: chocolate;
+    }
+
+    h3{
+        position: absolute;
+        top: 400px;
+        color: red;
+        font-size: xx-large;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Login</h2>
+<form action="{% url 'info_login' %}" method="post">
+{% csrf_token %}
+
+	<p>username :</p> <input type="text" name="username" placeholder="Username" required autocomplete="off" id="usernameinput"></br>
+    </br>
+
+
+	<p>password :</p> <input type="password" name="password" placeholder="Password" required autocomplete="off" id="passwordinput"></br>
+	</br>
+	<input type="submit" value="Login" required autocomplete="off">
+	<input type="reset" value="Clear" required autocomplete="off"><br>
+
+
+    </br></br></br>
+	<a href="{% url 'signup' %}">Or Click Here to Signup</a>
+
+</form></br>
+
+{% if error %}<h3>{{ error }}</h3>{% endif %}
+
+</body>
+
+</html>

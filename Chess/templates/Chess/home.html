@@ -1,0 +1,56 @@
+<html>
+
+<h1>Welcome To Chess AI Site</h1>
+
+<head>
+
+
+<style>
+    {%  load static %}
+    body{
+        background-image: url("{% static "IMGs/Background.jpg" %}");
+        background-size: 100%;
+    }
+    h1 {
+        display: inline-block;
+        color:darkkhaki;
+        margin-left: 400px;
+        margin-top: 30px;
+
+    }
+
+    #button1 {
+        background-color: darkkhaki;
+        color: black;
+        width: 120px;
+        height: 8%;
+        margin-left: 480px;
+        margin-top: 70px;
+        font-weight: bold;
+    }
+    #button2{
+        background-color: darkkhaki;
+        color: black;
+        width: 120px;
+        height: 8%;
+        margin-left: 50px;
+        font-weight: bold;
+    }
+    a{
+        display: inline-block;
+    }
+
+</style>
+
+</head>
+
+<body>
+<div>
+
+<a href="{% url 'login' %}"> <button type="button" id="button1">SIGN IN</button></a>
+<a href="{% url 'signup' %}"><button type="button" id="button2">SIGN UP</button> </a>
+</div>
+
+</body>
+
+</html>
