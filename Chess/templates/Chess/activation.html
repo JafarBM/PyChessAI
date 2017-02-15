@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 
 
 <head>
@@ -31,7 +31,7 @@
             display: inline-block;
             position: absolute;
             left: 650px;
-            top: 130px;
+            top: 95px;
         }
 
         #active_btn{
@@ -83,9 +83,9 @@
 <h4>Activate Your Account</h4>
 <form action=" {% url 'activation' %}" method="post">
 {% csrf_token %}
-    <p>Enter Your Username : </p><input type="text" name="username", required autocomplete="off" placeholder="Username" id="user"> </br></br>
+{#    <p>Enter Your Username : </p><input type="text" name="username", required autocomplete="off" placeholder="Username" id="user"> </br></br>#}
     <p>Enter Your Registration KEY : </p><input type="text" id="keyinput" name="activation_key" required autocomplete="off" placeholder="ACTIVATION KEY">
-
+    <input type="hidden" name="username" value="{{ user.username }}">
     </br></br>
     <input type="submit" value="Activate" id="active_btn">
     <a href="{% url 'home' %}"><button type="button" id="home-button">Home Page</button> </a>
@@ -95,6 +95,8 @@
 
 </body>
 
-{% if error %}<h3>{{ error }}</h3>{% endif %}
+{% if error %}
+    <h3>{{ error }}</h3>
+{% endif %}
 
 </html>

@@ -24,24 +24,26 @@
 
     #username{
         position: absolute;
-        left: 565px;
+        left: 582px;
         margin-top: 10px;
     }
 
     #email{
         position: absolute;
-        left: 565px;
+        left: 582px;
         margin-top: 10px;
     }
 
     #password1{
         position: absolute;
-        left: 565px;
+        left: 582px;
         margin-top: 10px;
     }
 
     #password2{
-        margin-left: 3px;
+        position: absolute;
+        left: 582px;
+        margin-top: 10px;
     }
 
     #button1{
@@ -64,9 +66,17 @@
 
     }
 
-    h3{
+    #invalid-user-err{
         position: absolute;
         left:365px;
+        top: 350px;
+        color: red;
+        font-size: x-large;
+    }
+
+    #pass-match-err{
+        position: absolute;
+        left: 220px;
         top: 350px;
         color: red;
         font-size: x-large;
@@ -98,7 +108,7 @@
 
 
 	<p>Password :</p> <input type="password" name="password" required autocomplete="off" placeholder="Password" id="password1"></br>
-    {#  <p>Repeat Password :</p> <input type="password" name="password2" required autocomplete="off" placeholder="Repeat Password" id="password2"></br>#}
+    <p>Repeat Password :</p> <input type="password" name="password2" required autocomplete="off" placeholder="Repeat Password" id="password2"></br>
 	</br>
 
 	<input type="submit" value="Sign up" id="button1" id="sigun-btn">
@@ -108,7 +118,14 @@
 
 </form></br>
 
-{% if error %}<h3>{{ error }}</h3>{% endif %}
+
+{% if error1 %}
+    <h3 id="pass-match-err">{{ error1 }}</h3>
+{% endif %}
+
+{% if error %}
+    <h3 id="invalid-user-err">{{ error }}</h3>
+{% endif %}
 
 </body>
 

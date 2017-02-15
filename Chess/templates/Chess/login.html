@@ -31,8 +31,9 @@
     }
 
     a {
+        position: absolute;
         display: inherit;
-
+        top: 400px;
         color: chocolate;
     }
 
@@ -68,7 +69,9 @@
 
 </form></br>
 
-{% if error %}<h3>{{ error }}</h3>{% endif %}
+{% if error %}
+    <h3>{{ error }}</h3>
+{% endif %}
 
 </body>
 

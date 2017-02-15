@@ -7,5 +7,7 @@ urlpatterns = [
 	url(r'^signup/$', signup_page, name='signup'),
 	url(r'^info_login/$', info_login, name='info_login'),
 	url(r'^info_signup/$', info_signup, name='info_signup'),
+	url(r'^gameAI/$', movement, name='game'),
 	url(r'^activation/$', activation, name='activation'),
+	url(r'^score_board/$', score_board, name='score_board'),
 ]

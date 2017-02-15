@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            {% load static %}
+            background-image: url("{% static 'IMGs/Background1.jpg' %}");
+            background-size: 100%;
+        }
+
+        #return{
+            background-color: darkkhaki;
+            width: 120px;
+            height: 40px;
+            position: absolute;
+            top: 20px;
+            left: 10px;
+        }
+
+        #score_board{
+            background-color: darkkhaki;
+            position: absolute;
+            top: 50px;
+            left: 550px;
+        }
+
+        h3{
+            position: absolute;
+            left: 500px;
+            color: darkkhaki;
+            top: 40px;
+        }
+    </style>
+    <title>Score Board</title>
+</head>
+<body>
+<form action="{% url 'game' %}" method="post">
+{% csrf_token %}
+{% load index %}
+
+    <table id="score_board">
+        <h3>{{ s }}</h3>
+        {% for i in s %}
+            <tr>
+                <td width="45" height="30">1{{ score_board|index:i|index:'0' }}</td>
+                <td width="15" height="30">1{{ score_board|index:i|index:'1' }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <input type="hidden" name="username" value="{{ user.username }}">
+    <input type="hidden" name="movement" value="aaaaa">
+    <input type="submit" value="BACK" id="return">
+</form>
+
+
+</body>
+</html>

@@ -11,29 +11,104 @@
     }
 
     h3{
-        margin: auto;
+        position: absolute;
+        top: 5px;
+        left: 15px;
         color: darkkhaki;
     }
 
     #exit{
         color: burlywood;
         position: absolute;
-        top: 600px;
+        top: 620px;
+        left: 10px;
         background-color: black;
+        width: 100px;
+        height: 38px;
     }
 
-    #board{
+    #table{
+        {% load static %}
+        background-image: url("{% static "IMGs/board.png" %}");
+        background-position: center;
+        background-size: 111.7%;
         position: absolute;
+        top: 70px;
         left: 350px;
+
     }
 
-{#    #black-rook-right{#}
-{#        position: absolute;#}
-{#        left: 860px;#}
-{#        top: 60px;#}
-{#        width: 70px;#}
-{#        height: 70px;#}
-{#    }#}
+    #move-btn{
+        position: absolute;
+        left: 1050px;
+        top: 350px;
+        width: 100px;
+        height: 40px;
+        background-color: saddlebrown;
+        color: khaki;
+    }
+
+    #move-txt{
+        position: absolute;
+        left: 990px;
+        top: 300px;
+        background-color: khaki;
+        width: 220px;
+        height: 30px;
+    }
+
+    h1{
+        display: inline-block;
+        margin-left: 42px;
+        color: burlywood;
+        margin-top: 0;
+    }
+
+    #A{
+        margin-left: 360px;
+    }
+
+    h2{
+        margin-top: 32px;
+        margin-left: 295px;
+        color: burlywood;
+        font-size: xx-large;
+    }
+
+    h4{
+        color: red;
+        position: absolute;
+        top: 400px;
+        left: 1035px;
+    }
+
+    #turn{
+        color: darkkhaki;
+        position: absolute;
+        top: 80px;
+        left: 690px;
+    }
+
+    #new_game{
+        color: darkkhaki;
+        position: absolute;
+        top: 520px;
+        left: 10px;
+        width: 100px;
+        height: 38px;
+        background-color: chocolate;
+    }
+
+    #score_board{
+        color: darkkhaki;
+        position: absolute;
+        top: 570px;
+        left: 10px;
+        width: 100px;
+        height: 38px;
+        background-color: saddlebrown;
+        font-size: 90%;
+    }
 
 </style>
 
@@ -41,25 +116,62 @@
 
 <body>
 
-
-<h3>HI {{user.username}} !</h3>
-<img src="{% static "IMGs/board.png" %}" width="610" height="610", id="board">
-{#<img src="{% static "IMGs/wb.png" %}">#}
-{#<img src="{% static "IMGs/wk.png" %}">#}
-{#<img src="{% static "IMGs/wn.png" %}">#}
-{#<img src="{% static "IMGs/wp.png" %}">#}
-{#<img src="{% static "IMGs/wq.png" %}">#}
-{#<img src="{% static "IMGs/wr.png" %}">#}
-{##}
-{#<img src="{% static "IMGs/bb.png" %}">#}
-{#<img src="{% static "IMGs/bk.png" %}">#}
-{#<img src="{% static "IMGs/bn.png" %}">#}
-{#<img src="{% static "IMGs/bp.png" %}">#}
-{#<img src="{% static "IMGs/bq.png" %}">#}
-{#<img src="{% static "IMGs/br.png" %}" id="black-rook-right">#}
+<form action="{% url 'game' %}" method="post">
+    <h1 id="A">A</h1> <h1>B</h1> <h1>C</h1> <h1>D</h1><h1>E</h1> <h1>F</h1> <h1>G</h1> <h1>H</h1>
+    <h2>8</h2> <h2>7</h2> <h2>6</h2> <h2>5</h2> <h2>4</h2> <h2>3</h2> <h2>2</h2> <h2>1</h2>
+    <h3>HI {{user.username}} !</h3>
 
 
-<a href="{% url 'home' %}"><button type="button" id="exit">Sign Out!</button></a>
+    {% csrf_token %}
+    {% load index %}
+    {% load static %}
+    <table id="table">
+      {% for i in "76543210" %}
+        <tr>
+          {% for j in "01234567" %}
+            <td><img src = "{% static board|index:i|index:j %}" width="68" height="68"></td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+
+    <input type="text" placeholder="Move i.e: e2-e4" id="move-txt" name="movement" autocomplete="off" autofocus>
+    <input type="hidden" name="username" value="{{ user.username }}">
+
+    <input type="submit" value="Move" id="move-btn">
+
+    {% if user.turn %}
+        <h2 id = "turn">WHITE's Turn</h2>
+    {% endif %}
+
+    {% if not user.turn %}
+        <h2 id = "turn">BLACK's Turn</h2>
+    {% endif %}
+
+
+    <a href="{% url 'home' %}"><button type="button" id="exit">Sign Out!</button></a>
+
+</form>
+
+<form action="{% url 'score_board' %}" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="username" value="{{ user.username }}">
+{#    <a href="{% url 'score_board' %}"><button type="button" id="score_board">Score Board</button></a>#}
+    <input type="submit" value="Score Board" id="score_board">
+</form>
+
+<form action="{% url 'game' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="movement" value="NEWGAME">
+    <input type="hidden" name="username" value="{{ user.username }}">
+    <input type="submit" value="New Game" id="new_game">
+
+</form>
+
+{% if error %}
+    <h4>{{ error }}</h4>
+{% endif %}
 
 </body>
 
